@@ -1,0 +1,267 @@
+#print a number
+
+echo "Enter a number : "
+read n
+echo "The no. is $n"
+
+-----------------------------------------------------
+
+#add subt div multiply simple
+
+echo "Enter the first number : "
+read a
+echo "Enter the second number : "
+read b
+
+sum=$(( a + b ))
+echo "The sum of $a & $b is : $sum"
+
+prod=$(( a * b ))
+echo "The product of $a & $b is : $prod"
+
+powe=$(( a ** b ))
+echo "$a to the power $b is : $powe"
+
+divi=$(( a / b ))
+echo "$a divided by $b is : $divi"
+
+subt=$(( a - b ))
+echo "Difference of $a & $b is : $subt"
+
+-------------------------------------------------------
+
+#add subt div multiply using expr
+echo "Enter the First number : "
+read a
+echo "Enter the Second number : "
+read b
+
+sum=expr $a + $b
+echo "The sum of $a & $b is : $sum"
+
+mul=expr $a \* $b
+echo "The product of $a & $b is : $mul"
+
+divi=expr $a / $b
+echo "$a/$b is : $divi"
+
+subt=expr $a - $b
+echo "The difference of $a & $b is : $subt"
+
+------------------------------------------------------
+
+#even odd
+
+echo "Enter a number : "
+read num
+
+temp=$(($num%2))
+
+if [ $temp == 0 ]
+then
+echo "The number is even : "
+else
+echo "The number is odd : "
+fi
+
+-----------------------------------------------------
+
+#number is zero or not
+
+echo "Enter a number : "
+read num
+
+if [ $num == 0 ]
+then
+echo "The number is zero."
+else
+echo "The number is not Zero."
+fi
+
+------------------------------------------------------
+
+#which number is greater among the three
+
+echo "Enter the first number : "
+read a
+echo "Enter the second number : "
+read b
+echo "Enter the third number : "
+read c
+
+if [ $a -gt $b ] && [ $a -gt $c ]; then
+echo "The number A=$a is greater."
+elif [ $b -gt $c ] && [ $a -gt $a ]; then
+echo "The number B=$b is greater."
+else
+echo "The number C=$c is greater."
+fi
+
+------------------------------------------------------
+
+#which number is greater among the four
+
+echo "Enter the first number : "
+read a
+echo "Enter the second number : "
+read b
+echo "Enter the third number : "
+read c
+echo "Enter the four number : "
+read d
+
+if [ $a -gt $b ] && [ $a -gt $c ] && [ $a -gt $d ]; then
+echo "The number A=$a is greater."
+elif [ $b -gt $c ] && [ $b -gt $d ]; then
+echo "The number B=$b is greater."
+elif [ $c -gt $d ]; then
+echo "The number C=$c is greater."
+else
+echo "The number D=$d is greater."
+fi
+
+--------------------------------------------------
+
+
+# 1. Simple Calculator using CASE
+echo "Enter Two Numbers : "
+read a
+read b
+
+echo "1. Addition"
+echo "2. Subtraction"
+echo "3. Multiplication"
+echo "4. Division"
+echo "Enter Choice : "
+read ch
+
+case $ch in 
+	1)res=$(( a + b ))
+		;;
+	2)res=$(( a - b ))
+		;;
+	3)res=$(( a * b ))
+		;;
+	4)res=$(echo "scale=2; $a / $b" | bc )
+		;;
+esac
+
+echo "The Result of your Choice : $res"
+
+***************
+
+OUTPUT 1.
+
+snucs@NewUbuntu:~/Desktop/raj$ ./07_calculator.sh 
+Enter Two Numbers : 
+2
+6
+1. Addition
+2. Subtraction
+3. Multiplication
+4. Division
+Enter Choice : 
+1
+The Result of our Choice : 8
+
+-------------------------------------------------------------------------------------------------------
+
+# 2. Printing n numbers
+echo "Printing Number from 1 to n..."
+echo "Enter the value of n : "
+read n
+
+for (( i=1; i<=n; i++ ))
+do
+	echo "$i"
+done
+
+****************
+
+snucs@NewUbuntu:~/Desktop/raj$ ./08_print_1Ton.sh 
+Printing Number from 1 to n...
+Enter the value of n : 
+10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+-------------------------------------------------------------------------------------------------------
+
+#3. fibonacci Series
+a=0
+b=1
+echo "Enter the limit of fibonacci series : "
+read n
+
+echo "Fibonacci Series.."
+echo "$a"
+echo "$b"
+for (( i=0; i<n; i++ ))
+do
+	result=$(( a + b ))
+	echo "$result"
+	a=$b
+	b=$result
+done
+
+****************
+
+OUTPUT 3.
+
+snucs@NewUbuntu:~/Desktop/raj$ ./09_fibonacci.sh 
+Enter the limit of fibonacci series : 
+10
+Fibonacci Series..
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+
+-------------------------------------------------------------------------------------------------------
+
+#Simple Calculator using while and case
+echo "Enter Two Numbers : "
+read a
+read b
+
+echo "1. Addition"
+echo "2. Subtraction"
+echo "3. Multiplication"
+echo "4. Division"
+echo "Enter Choice : "
+read ch
+
+while [ ch!=0 ]
+do
+	echo "Enter Choice : "
+	read ch
+	case $ch in 
+		1)res=$(( a + b ))
+			;;
+		2)res=$(( a - b ))
+			;;
+		3)res=$(( a * b ))
+			;;
+		4)res=$(echo "scale=2; $a / $b" | bc )
+			;;
+	esac
+	echo "The Result of your Choice : $res"
+done
+
+-------------------------------------------------------------------------------------------------------
